@@ -1,7 +1,8 @@
 const expectedCaches = ['static-v1'],
    resources = [
   '/index.html',
-  '/layout.css'
+  '/layout.css',
+  '/sw.js'
  ];
 self.addEventListener('install', event => {
  console.log('installing..');
