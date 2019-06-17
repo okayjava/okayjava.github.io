@@ -5,7 +5,7 @@
 <Script>
   if ('serviceWorker' in navigator) {
      window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js?111').then(function(reg) {
+    navigator.serviceWorker.register('/sw.js').then(function(reg) {
      console.log('ServiceWorker registration successful');
 reg.update();
       }).catch(function(err) {
