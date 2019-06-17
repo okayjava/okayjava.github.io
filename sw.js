@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(event) {
  );
 });
 
-function aa()
+aa()
 {
 	alert('1111');
 }
