@@ -25,9 +25,9 @@
  
  <Script>
  $(document).ready(function() {
-	$('ol > input').forEach(function(x){
-		console.log(x);
-	}) 
+	 $('ol input').each(function(){
+		 $(this).val("type='" + $(this).prop("type") + "'")
+	 });
  });
  </Script>
 </body>
