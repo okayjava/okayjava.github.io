@@ -12,13 +12,13 @@
   
 </head>
 <body>
-<h1><a href="keyboard.html">keyboard</a></h1>
+<h1><a href="keyboard.html">keyboard 1</a></h1>
 <ol>
   <li><input type="text" style="z-index:1;"></li>
-  <li><input type="password" style="z-index:2;"></li>
+  <li><input type="password" ></li>
   <li><input type="date" style="z-index:3;"></li>
   <li><input type="range"></li>
-  <li><input type="email"></li>
+  <li><input type="email" style="z-index:2;"></li>
   <li><input type="month"></li>
   <li><input type="number"></li>
   <li><input type="tel"></li>
@@ -31,7 +31,6 @@
  $(document).ready(function() {
 	 $('ol input').each(function(){
 		 $(this).val("type='" + $(this).prop("type") + "'")
-		 console.log($(this).prop("type"), $(this).prop())
 	 });
  });
  </Script>
