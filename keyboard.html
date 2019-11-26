@@ -9,28 +9,74 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <style>
+  input[type='text'], input[type='password'], input[type='submit'], input[type='search'], input[type='tel'], input[type='email'], html input[type='button'], input[type='reset'] {
+    -webkit-appearance: none;
+    border-radius: 0;
+   }
   
+  
+  </style>
 </head>
 <body>
-<h1><a href="keyboard.html">keyboard 1</a></h1>
+<h1><a href="keyboard.html">keyboard 2</a></h1>
 <ol>
-  <li><input type="text" style="z-index:1;"></li>
+<form>
+  <li><input type="text" autocomplete="off"  style="z-index:5"></li>
   <li><input type="password" ></li>
-  <li><input type="date" style="z-index:3;"></li>
+  <li><input type="date" style="z-index:4;"></li>
   <li><input type="range"></li>
-  <li><input type="email" style="z-index:2;"></li>
+  <li><input type="email" style="z-index:3;"></li>
   <li><input type="month"></li>
   <li><input type="number"></li>
   <li><input type="tel"></li>
-  <li><input type="time"></li>
-  <li><input type="url"></li>
-  <li><input type="search"></li>
+  <li><input type="time" ></li>
+  <li><input type="url"  style="z-index:2"></li>
+  <li><input type="search" style="z-index:1"></li>
+</form>
 </ol>
- 
+<div data-role="page" data-theme="b" id="jqm-home">
+    <div data-role="content">
+        <form id="autoTab">
+            <label for="name">Text Pin #1:</label>
+            <input type="number" name="txtPin1" id="txtPin1" value="" class="txtPin" placeholder="Please enter Pin #1" pattern="[0-9]{4}" />
+            <br />
+            <label for="name">Text Pin #2:</label>
+            <input type="number" name="txtPin2" id="txtPin2" value="" class="txtPin" placeholder="Please enter Pin #2" pattern="[0-9]{4}" />
+            
+            <br />
+            <label for="name">Text Pin #3:</label>
+            <input type="number" name="txtPin3" id="txtPin3" value="" class="txtPin" placeholder="Please enter Pin #3" pattern="[0-9]{4}" />
+            
+            <br />
+            <label for="name">Text Pin #4:</label>
+            <input type="number" name="txtPin4" id="txtPin4" value="" class="txtPin" placeholder="Please enter Pin #4" maxlength="4" pattern="[0-9]{4}" />
+        </form>
+    </div>
+</div> 
+
  <Script>
  $(document).ready(function() {
+	 $('.txtPin').keydown(function() {
+		    that=this;
+		    setTimeout(function(){
+		        var value = $(that).val();
+		        if(value.length > 3) {
+		        $(that).next().next().next().click();
+		        }
+		     },0);
+		});
+		$('.txtPin').click(function() {
+		   $(this).focus().tap();
+		});
+	 
+	 
+	 
 	 $('ol input').each(function(){
-		 $(this).val("type='" + $(this).prop("type") + "'")
+		 $(this).parent().append("<p style='display:inline;padding-left:10px;'>"+"type='" + $(this).prop("type") + "'"+"</p>");
+
+	 });
+	 $('input').on('focusout', function() {
 	 });
  });
  </Script>
