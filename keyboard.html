@@ -3,7 +3,8 @@
 <head>
   <title>HTML - 수업소개</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+ 
 	<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="Pragma" content="no-cache">
@@ -25,19 +26,20 @@
 <body>
 <h1><a href="keyboard.html">keyboard 2</a></h1>
 <ol>
+  <li><input type="text" id='keylog'> </li>
 <form>
-  <li><input type="text" autocomplete="off"  style="z-index:5"></li>
-  <li><input type="password" ></li>
-  <li><input type="date" style="z-index:4;"></li>
-  <li><input type="range"></li>
-  <li><input type="email" style="z-index:3;"></li>
-  <li><input type="month"></li>
-  <li><input type="number"></li>
-  <li><input type="tel"></li>
-  <li><input type="time" ></li>
-  <li><input type="url"  style="z-index:2"></li>
-  <li><input type="search" style="z-index:1"></li>
-  <li><input type="text" class="custom_dateicker"> datepicker
+  <li><input type="text" id="input1" data-nextid='' autocomplete="off"></li>
+  <li><input type="password" id="input2" data-nextid='input1' ></li>
+  <li><input type="date" id="input3" data-nextid='input2' ></li>
+  <li><input type="range" id="input4" data-nextid='input3' ></li>
+  <li><input type="email" id="input5" data-nextid='input4' ></li>
+  <li><input type="month" id="input6" data-nextid='input5' ></li>
+  <li><input type="number" id="input7" data-nextid='input6' ></li>
+  <li><input type="tel" id="input8" data-nextid='input7' ></li>
+  <li><input type="time" id="input9" data-nextid='input8' ></li>
+  <li><input type="url" id="input10" data-nextid='input9' ></li>
+  <li><input type="search" id="input11" data-nextid='input10' ></li>
+  <li><input type="text" id="input12" data-nextid='input11' class="custom_dateicker"> datepicker
  <pre>
  	 $.datepicker.setDefaults({
 		  showOn: "focus",
@@ -75,7 +77,60 @@
 </div> 
 
  <Script>
+
  $(document).ready(function() {
+	 $('form  input').keydown(function(x){$('#keylog').val('keydown : '+x.keyCode);console.log('keydown : '+x.keyCode);});
+	 $('form  input').keyup(function(x){$('#keylog').val('keyup : '+x.keyCode);console.log('keyup : '+x.keyCode);});
+	 $('form  input').keypress(function(x){$('#keylog').val('keypress :' + x.keyCode);console.log('keypress : '+x.keyCode);});
+	 $('form  input').parent().hide();
+	 $('#input12').parent().show();
+	 $('form  input').focusout(function(x){
+		 var nextid = "";
+		 switch($(this).prop('id')) {
+		 	case "input12":
+		 		nextid = "input11";
+		 		break;
+		 	case "input11":
+		 		nextid = "input10";
+		 		break;
+		 	case "input10":
+		 		nextid = "input9";
+		 		break;
+		 	case "input9":
+		 		nextid = "input8";
+		 		break;
+		 	case "input8":
+		 		nextid = "input7";
+		 		break;
+		 	case "input7":
+		 		nextid = "input6";
+		 		break;
+		 	case "input6":
+		 		nextid = "input5";
+		 		break;
+		 	case "input5":
+		 		nextid = "input4";
+		 		break;
+		 	case "input4":
+		 		nextid = "input3";
+		 		break;
+		 	case "input3":
+		 		nextid = "input2";
+		 		break;
+		 	case "input2":
+		 		nextid = "input1";
+		 		break;
+		 	case "input1":
+		 		nextid = "";
+		 		break;
+		 }
+		 	console.log('focusout : ' + x);
+		 	console.log('id : ' + $(this).prop('id'));
+		 	console.log('nextid : ' + nextid);
+		 	$('#' + nextid).parent().show();
+		 	$('#' + nextid).focus();
+		 	console.log($(this));
+	});
 	 $.datepicker.setDefaults({
 		  showOn: "focus",
 		  buttonImageOnly: true,
